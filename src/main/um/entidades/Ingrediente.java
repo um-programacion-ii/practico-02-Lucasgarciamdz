@@ -1,6 +1,8 @@
 package src.main.um.entidades;
 
-public class Ingrediente {
+import src.main.um.interfaces.Despensable;
+
+public class Ingrediente implements Despensable {
   private String nombre;
   private int cantidad;
 

@@ -1,8 +1,11 @@
 package src.main.um.entidades;
 
+import src.main.um.interfaces.Despensable;
+
 public class Despensa {
 
   Ingrediente[] ingredientes;
+  Despensable[] despensables;
 
   public Despensa() {
     ingredientes = new Ingrediente[10];

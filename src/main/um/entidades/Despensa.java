@@ -1,49 +1,35 @@
 package src.main.um.entidades;
 
 import src.main.um.interfaces.Despensable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Despensa {
 
-  Ingrediente[] ingredientes;
-  Despensable[] despensables;
+  Map<String, Despensable> despensaMap;
 
   public Despensa() {
-    ingredientes = new Ingrediente[10];
+    despensaMap = new HashMap<>();
   }
 
-  public Despensa(int cantidad) {
-    ingredientes = new Ingrediente[cantidad];
+  public void addDespensable(String nombre, Despensable despensable) {
+    despensaMap.put(nombre, despensable);
   }
 
-  public void addIngrediente(Ingrediente ingrediente) {
-    for (int i = 0; i < ingredientes.length; i++) {
-      if (ingredientes[i] == null) {
-        ingredientes[i] = ingrediente;
-        break;
-      }
+  public String getDespensable(String nombre, int cantidad) {
+    Despensable despensable = despensaMap.get(nombre);
+    if (despensable != null) {
+
+      return despensable.sacar(cantidad);
     }
-  }
-
-  public String getIngrediente(String nombre, int cantidad) {
-    for (Ingrediente ingrediente : ingredientes) {
-      if (ingrediente != null && ingrediente.getNombre().equals(nombre)) {
-        return ingrediente.sacar(cantidad);
-      }
-    }
-    return "No se encontro el ingrediente";
-  }
-
-  public Ingrediente[] getIngredientes() {
-    return ingredientes;
+    return "No se encontro el item";
   }
 
   @Override
   public String toString() {
     String despensaStr = "Despensa:\n";
-    for (Ingrediente ingrediente : ingredientes) {
-      if (ingrediente != null) {
-        despensaStr += ingrediente + "\n";
-      }
+    for (Map.Entry<String, Despensable> entry : despensaMap.entrySet()) {
+      despensaStr += entry.getKey() + ": " + entry.getValue() + "\n";
     }
     return despensaStr;
   }

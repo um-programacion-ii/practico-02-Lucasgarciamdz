@@ -3,18 +3,21 @@ package src.main.um.entidades;
 import src.main.um.entidades.Despensa;
 import src.main.um.entidades.Ingrediente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecetaBase {
 
   int tiempoCoccion;
-  Ingrediente[] ingredientes;
+  List<Ingrediente> ingredientes;
 
   String preparacion;
 
   public RecetaBase() {
-    ingredientes = new Ingrediente[10];
+    ingredientes = new ArrayList<>();
   }
 
-  public RecetaBase(int tiempoCoccion, Ingrediente[] ingredientes, String preparacion) {
+  public RecetaBase(int tiempoCoccion, List<Ingrediente> ingredientes, String preparacion) {
     this.tiempoCoccion = tiempoCoccion;
     this.ingredientes = ingredientes;
     this.preparacion = preparacion;
@@ -28,11 +31,11 @@ public class RecetaBase {
     this.tiempoCoccion = tiempoCoccion;
   }
 
-  public Ingrediente[] getIngredientes() {
+  public List<Ingrediente> getIngredientes() {
     return ingredientes;
   }
 
-  public void setIngredientes(Ingrediente[] ingredientes) {
+  public void setIngredientes(List<Ingrediente> ingredientes) {
     this.ingredientes = ingredientes;
   }
 
@@ -48,7 +51,7 @@ public class RecetaBase {
     for (Ingrediente ingrediente : this.getIngredientes()) {
       if (ingrediente != null) {
         String hayIngredientes =
-            despensa.getIngrediente(ingrediente.getNombre(), ingrediente.getCantidad());
+            despensa.getDespensable(ingrediente.getNombre(), ingrediente.getCantidad());
         if (hayIngredientes.equals("No se encontro el ingrediente")
             || hayIngredientes.startsWith("No hay suficiente")) {
           return false;
@@ -63,7 +66,7 @@ public class RecetaBase {
     for (Ingrediente ingrediente : this.getIngredientes()) {
       if (ingrediente != null) {
         String hayIngredientes =
-            despensa.getIngrediente(ingrediente.getNombre(), ingrediente.getCantidad());
+            despensa.getDespensable(ingrediente.getNombre(), ingrediente.getCantidad());
         if (hayIngredientes.equals("No se encontro el ingrediente")
             || hayIngredientes.startsWith("No hay suficiente")) {
           faltan += hayIngredientes + "\n";

@@ -34,6 +34,7 @@ public class Ingrediente implements Despensable {
     return "Nombre: " + nombre + ", Cantidad: " + cantidad;
   }
 
+  @Override
   public String sacar(int cantidad) {
     if (this.cantidad >= cantidad) {
       this.cantidad -= cantidad;

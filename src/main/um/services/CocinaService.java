@@ -15,10 +15,10 @@ public class CocinaService {
     if (receta.sePuedeCocinar(despensa)) {
       System.out.println("Cocinando: \n");
       System.out.println(receta.getPreparacion() + "\n");
-      for (int i = 0; i < receta.getIngredientes().length; i++) {
-        if (receta.getIngredientes()[i] != null) {
-          despensa.getIngrediente(
-              receta.getIngredientes()[i].getNombre(), receta.getIngredientes()[i].getCantidad());
+      for (int i = 0; i < receta.getIngredientes().size(); i++) {
+        if (receta.getIngredientes().get(i) != null) {
+          despensa.getDespensable(
+              receta.getIngredientes().get(i).getNombre(), receta.getIngredientes().get(i).getCantidad());
         }
       }
       return "Se ha cocinado la receta";

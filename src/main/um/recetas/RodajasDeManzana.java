@@ -1,10 +1,8 @@
 package src.main.um.recetas;
 
+import java.util.List;
 import src.main.um.entidades.Ingrediente;
 import src.main.um.entidades.RecetaBase;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class RodajasDeManzana extends RecetaBase {
   public RodajasDeManzana() {

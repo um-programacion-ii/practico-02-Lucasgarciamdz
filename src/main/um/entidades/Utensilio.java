@@ -5,27 +5,42 @@ import src.main.um.interfaces.Reutilizable;
 
 public class Utensilio implements Despensable, Reutilizable {
 
-    private int vidaUtil;
+  private int vidaUtil;
+  private String nombre;
 
-    @Override
-    public String sacar(int cantidad) {
-        return null;
-    }
+  public Utensilio() {}
 
-    @Override
-    public int getVidaUtil() {
-        return vidaUtil;
-    }
+  public Utensilio(String nombre, int vidaUtil) {
+    this.nombre = nombre;
+    this.vidaUtil = vidaUtil;
+  }
 
-    @Override
-    public void setVidaUtil(int vidaUtil) {
-        this.vidaUtil = vidaUtil;
+  @Override
+  public String sacar(int cantidad) {
+    if (vidaUtil >= cantidad) {
+      vidaUtil -= cantidad;
+      return "Se han sacado " + cantidad + " usos";
+    } else {
+      return "No hay suficientes usos, faltan " + (cantidad - vidaUtil);
     }
+  }
 
-    public Utensilio() {
-    }
+  @Override
+  public int getVidaUtil() {
+    return vidaUtil;
+  }
 
-    public Utensilio(int vidaUtil) {
-        this.vidaUtil = vidaUtil;
-    }
+  @Override
+  public void setVidaUtil(int vidaUtil) {
+    this.vidaUtil = vidaUtil;
+  }
+
+  @Override
+  public String toString() {
+    return "Nombre: " + nombre + ", Vida util: " + vidaUtil;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
 }

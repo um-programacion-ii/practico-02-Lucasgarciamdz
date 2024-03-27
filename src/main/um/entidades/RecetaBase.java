@@ -1,25 +1,27 @@
 package src.main.um.entidades;
 
-import src.main.um.entidades.Despensa;
-import src.main.um.entidades.Ingrediente;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecetaBase {
 
   int tiempoCoccion;
   List<Ingrediente> ingredientes;
+  List<Utensilio> utensilios;
 
   String preparacion;
 
   public RecetaBase() {
-    ingredientes = new ArrayList<>();
   }
 
-  public RecetaBase(int tiempoCoccion, List<Ingrediente> ingredientes, String preparacion) {
+  public RecetaBase(
+      int tiempoCoccion,
+      List<Ingrediente> ingredientes,
+      List<Utensilio> utensilios,
+      String preparacion) {
+
     this.tiempoCoccion = tiempoCoccion;
     this.ingredientes = ingredientes;
+    this.utensilios = utensilios;
     this.preparacion = preparacion;
   }
 
@@ -37,6 +39,14 @@ public class RecetaBase {
 
   public void setIngredientes(List<Ingrediente> ingredientes) {
     this.ingredientes = ingredientes;
+  }
+
+  public List<Utensilio> getUtensilios() {
+    return utensilios;
+  }
+
+  public void setUtensilios(List<Utensilio> utensilios) {
+    this.utensilios = utensilios;
   }
 
   public String getPreparacion() {
@@ -58,6 +68,16 @@ public class RecetaBase {
         }
       }
     }
+
+    for (Utensilio utensilio : this.getUtensilios()) {
+      if (utensilio != null) {
+        String hayUtensilios = despensa.getDespensable(utensilio.getClass().getSimpleName(), 1);
+        if (hayUtensilios.equals("No se encontro el utensilio")
+            || hayUtensilios.startsWith("No hay suficiente")) {
+          return false;
+        }
+      }
+    }
     return true;
   }
 
@@ -70,6 +90,17 @@ public class RecetaBase {
         if (hayIngredientes.equals("No se encontro el ingrediente")
             || hayIngredientes.startsWith("No hay suficiente")) {
           faltan += hayIngredientes + "\n";
+        }
+      }
+    }
+
+    faltan += "Faltan los siguientes utensilios:\n";
+    for (Utensilio utensilio : this.getUtensilios()) {
+      if (utensilio != null) {
+        String hayUtensilios = despensa.getDespensable(utensilio.getClass().getSimpleName(), 1);
+        if (hayUtensilios.equals("No se encontro el utensilio")
+            || hayUtensilios.startsWith("No hay suficiente")) {
+          faltan += hayUtensilios + "\n";
         }
       }
     }

@@ -1,9 +1,8 @@
 package src.main.um.recetas;
 
+import java.util.Arrays;
 import src.main.um.entidades.Ingrediente;
 import src.main.um.entidades.RecetaBase;
-import java.util.Arrays;
-import java.util.List;
 
 public class SopaDeTomate extends RecetaBase {
   public SopaDeTomate() {

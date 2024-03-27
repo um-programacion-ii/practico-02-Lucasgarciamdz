@@ -1,5 +1,6 @@
 package src.main.um.entidades;
 
+import src.main.um.excepciones.VidaUtilInsuficiente;
 import src.main.um.interfaces.Despensable;
 import src.main.um.interfaces.Reutilizable;
 
@@ -16,12 +17,12 @@ public class Utensilio implements Despensable, Reutilizable {
   }
 
   @Override
-  public String sacar(int cantidad) {
+  public String sacar(int cantidad) throws VidaUtilInsuficiente {
     if (vidaUtil >= cantidad) {
       vidaUtil -= cantidad;
       return "Se han sacado " + cantidad + " usos";
     } else {
-      return "No hay suficientes usos, faltan " + (cantidad - vidaUtil);
+      throw new VidaUtilInsuficiente("No hay suficientes usos, faltan " + (cantidad - vidaUtil) + " usos");
     }
   }
 

@@ -1,5 +1,7 @@
 package src.main.um.entidades;
 
+import src.main.um.excepciones.StockInsuficiente;
+import src.main.um.excepciones.VidaUtilInsuficiente;
 import src.main.um.services.CocinaService;
 
 public class Chef {
@@ -31,7 +33,7 @@ public class Chef {
     this.estrellasMichelin = estrellasMichelin;
   }
 
-  public String cocinar(CocinaService cocina, RecetaBase receta) {
+  public String cocinar(CocinaService cocina, RecetaBase receta) throws VidaUtilInsuficiente, StockInsuficiente {
     System.out.println("Hola soy " + this);
     return cocina.cocinar(receta);
   }

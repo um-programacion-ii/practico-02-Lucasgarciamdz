@@ -2,6 +2,8 @@ package src.main.um.services;
 
 import src.main.um.entidades.Despensa;
 import src.main.um.entidades.RecetaBase;
+import src.main.um.excepciones.StockInsuficiente;
+import src.main.um.excepciones.VidaUtilInsuficiente;
 
 public class CocinaService {
 
@@ -11,7 +13,7 @@ public class CocinaService {
     this.despensa = despensa;
   }
 
-  public String cocinar(RecetaBase receta) {
+  public String cocinar(RecetaBase receta) throws VidaUtilInsuficiente, StockInsuficiente {
     if (receta.sePuedeCocinar(despensa)) {
       System.out.println("Cocinando: \n");
       System.out.println(receta.getPreparacion() + "\n");

@@ -3,6 +3,7 @@ package src.main.um.entidades;
 import java.util.HashMap;
 import java.util.Map;
 
+import src.main.um.excepciones.StockInsuficiente;
 import src.main.um.excepciones.VidaUtilInsuficiente;
 import src.main.um.interfaces.Despensable;
 
@@ -18,15 +19,14 @@ public class Despensa {
     despensaMap.put(nombre, despensable);
   }
 
-  public String getDespensable(String nombre, int cantidad) throws VidaUtilInsuficiente {
+  public String getDespensable(String nombre, int cantidad)
+      throws VidaUtilInsuficiente, StockInsuficiente {
     Despensable despensable = despensaMap.get(nombre);
     if (despensable != null) {
 
-      try {
+
         return despensable.sacar(cantidad);
-      } catch (VidaUtilInsuficiente e) {
-        return e.getMessage();
-      }
+
     }
     return "No se encontro el item";
   }

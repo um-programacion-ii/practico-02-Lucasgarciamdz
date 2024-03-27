@@ -1,5 +1,6 @@
 package src.main.um.entidades;
 
+import src.main.um.excepciones.StockInsuficiente;
 import src.main.um.interfaces.Despensable;
 
 public class Ingrediente implements Despensable {
@@ -35,12 +36,13 @@ public class Ingrediente implements Despensable {
   }
 
   @Override
-  public String sacar(int cantidad) {
+  public String sacar(int cantidad) throws StockInsuficiente {
     if (this.cantidad >= cantidad) {
       this.cantidad -= cantidad;
       return "Se han sacado " + cantidad + " " + nombre;
     } else {
-      return "No hay suficiente " + nombre + ", falta " + (cantidad - this.cantidad) + " unidades";
+      throw new StockInsuficiente(
+          "No hay suficiente " + nombre + ", falta " + (cantidad - this.cantidad) + " unidades");
     }
   }
 }

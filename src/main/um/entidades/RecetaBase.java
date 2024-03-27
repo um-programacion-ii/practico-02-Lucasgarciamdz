@@ -1,5 +1,6 @@
 package src.main.um.entidades;
 
+import src.main.um.excepciones.StockInsuficiente;
 import src.main.um.excepciones.VidaUtilInsuficiente;
 
 import java.util.List;
@@ -59,7 +60,7 @@ public class RecetaBase {
     this.preparacion = preparacion;
   }
 
-  public Boolean sePuedeCocinar(Despensa despensa) throws VidaUtilInsuficiente {
+  public Boolean sePuedeCocinar(Despensa despensa) throws VidaUtilInsuficiente, StockInsuficiente {
     for (Ingrediente ingrediente : this.getIngredientes()) {
       if (ingrediente != null) {
         String hayIngredientes =
@@ -83,7 +84,7 @@ public class RecetaBase {
     return true;
   }
 
-  public String queFalta(Despensa despensa) throws VidaUtilInsuficiente {
+  public String queFalta(Despensa despensa) throws VidaUtilInsuficiente, StockInsuficiente {
     String faltan = "Faltan los siguientes ingredientes:\n";
     for (Ingrediente ingrediente : this.getIngredientes()) {
       if (ingrediente != null) {
